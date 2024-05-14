@@ -14,6 +14,6 @@ export const handler = async (req, method) => {
     }
     return "Unknown request"
   } catch (error) {
-    errorHandler(error, "handler", method);
+    errorHandler(error, "handler ---", method);
   }
 }

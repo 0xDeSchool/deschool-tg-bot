@@ -1,0 +1,2 @@
+# send message
+GET https://api.telegram.org/bot7153390403:AAEvv9mNapgLvBybZD5EILEH3yHOxGRCyT8/sendMessage?chat_id=5502035762&text=hello

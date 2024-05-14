@@ -37,6 +37,7 @@ export const handleMessage = async (messageObj) => {
           return sendMessage(chatId, "Sorry, I don't understand your command.");
       }
     } else {
+      console.log('messageText', messageText)
       return sendMessage(chatId, messageText);
     }
   } catch (error) {
