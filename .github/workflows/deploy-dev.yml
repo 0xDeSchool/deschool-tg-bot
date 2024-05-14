@@ -23,7 +23,7 @@ jobs:
             cd deschool-tg-bot
             git pull
             sudo kill $(sudo lsof -t -i:4040)
-            sudo nohup node index.js &
+            npm i & npm start
           # Hostname or IP address of the server.
           host: ${{ vars.DEV_SERVER_SSH_HOST }}
           # Username for authentication.
