@@ -1,0 +1,32 @@
+name: BuildAndDeploy-dev
+on:
+  push:
+    branches: [ dev ]
+    paths-ignore:
+      - 'docs/**'
+      - 'scripts/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Remote SSH Commands
+        # You may pin to the exact commit or the version.
+        # uses: fifsky/ssh-action@58b3c484be9c20cf118fd3b939a6d2cb3c769512
+        uses: fifsky/ssh-action@v0.0.6
+        with:
+          # Command to execute on the remote server.
+          command: |
+            cd deschool-tg-bot
+            git pull
+            sudo kill $(sudo lsof -t -i:4040)
+            sudo nohup node index.js &
+          # Hostname or IP address of the server.
+          host: ${{ vars.DEV_SERVER_SSH_HOST }}
+          # Username for authentication.
+          user: ubuntu
+          # String that contains a private key for either key-based or hostbased user authentication (OpenSSH format)
+          key: ${{ secrets.DEV_SERVER_SSH_PRIVATE_KEY }}
